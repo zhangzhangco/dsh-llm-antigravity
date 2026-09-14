@@ -1,0 +1,5 @@
+# Normalize text files to LF in the repository.
+* text=auto eol=lf
+
+# Keep the package artifacts binary.
+*.tgz binary

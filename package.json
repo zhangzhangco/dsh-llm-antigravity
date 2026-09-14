@@ -1,0 +1,40 @@
+{
+  "name": "dsh-llm-antigravity",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Antigravity route for DeepSeek Harness: local Antigravity CLI (agy) as an LLM provider",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "antigravity",
+    "agy",
+    "gemini",
+    "llm"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangzhangco/dsh-llm-antigravity.git"
+  },
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "config.js",
+    "catalog.js",
+    "agent.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.2"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm": "^0.1.5-rc.2",
+    "@deepseek-ai/cordis": "^4.0.2"
+  }
+}

@@ -1,0 +1,14 @@
+# Build output — the distributable is generated with `pnpm pack`.
+*.tgz
+
+# Dependencies
+node_modules/
+
+# Editor / OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Local scratch
+*.log
