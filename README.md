@@ -157,6 +157,28 @@ Set `textOnly: false` plus `skipPermissions: true` only when you actually want
 Antigravity to act on the machine — and accept that its tools then run outside
 the harness sandbox, with no DSH approval in front of them.
 
+### What tool mode actually does
+
+Measured on a real run with `textOnly: false` and `skipPermissions: true`:
+
+- `agy`'s `init` event reports **57 tools** and `permission_mode:
+  always-proceed`, so nothing is denied and no `denied_actions` come back;
+- `run_command` executes **in the configured `cwd`** (or the session workspace
+  when `cwd` is empty) — `pwd` returns that directory;
+- file-producing tools may instead write into Antigravity's own scratch area,
+  `~/.gemini/antigravity-cli/scratch/`, so an artifact the model reports as
+  "created" can land outside the workspace you expected. Use `addDirs`
+  (`agy --add-dir`) to bring another root into the session workspace, and check
+  the reported path rather than assuming `cwd`;
+- the harness still receives **text only**: Antigravity's tool traffic never
+  becomes DSH tool calls, so nothing appears in the DSH transcript as a tool
+  invocation and no DSH tool executes.
+
+Because the last point surprises people, the two tool layers are worth keeping
+apart: `textOnly` controls **Antigravity's** tools, while the harness's own tools
+(bash, read, write, web) are never in play on this route whether `textOnly` is on
+or off.
+
 ## Network and proxy
 
 `agy` is a Go binary: it honours `HTTP_PROXY`/`HTTPS_PROXY`/`NO_PROXY` and
